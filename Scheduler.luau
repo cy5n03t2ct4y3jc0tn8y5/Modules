@@ -53,6 +53,11 @@ function Scheduler:Start()
 	end))
 end
 
+--- Pause scheduler
+function Scheduler:Pause()
+	self._LoopMaid:DoCleaning()
+end
+
 --- Add a task to the Scheduler
 function Scheduler:Tick(func: () -> ()): RBXScriptConnection
 	return self._Signal:Connect(func)
