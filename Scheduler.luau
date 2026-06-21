@@ -20,11 +20,11 @@
 local Scheduler = {}
 Scheduler.__index = Scheduler
 
-local Stellar = shared.Stellar
+local Stellar = getrenv().shared.Stellar
 local RunService = game:GetService("RunService")
 
-local Maid = Stellar.Get("Maid")
-local Signal = Stellar.Get("Signal")
+local Maid = loadstring(game:HttpGet("https://raw.githubusercontent.com/cy5n03t2ct4y3jc0tn8y5/Modules/refs/heads/main/Maid.luau"))()
+local Signal = loadstring(game:HttpGet("https://raw.githubusercontent.com/cy5n03t2ct4y3jc0tn8y5/Modules/refs/heads/main/Signal.luau"))()
 
 --- Create a new Scheduler object
 --- @return Scheduler
