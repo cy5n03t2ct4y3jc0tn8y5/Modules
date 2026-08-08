@@ -7,6 +7,8 @@ if not shared.DebugService then
   shared.DebugService = DebugService
   
   Success += 1
+else
+  DebugService = shared.DebugService
 end
 
 DebugService:Info(tostring(Success) .. " MODULES LOADED")
