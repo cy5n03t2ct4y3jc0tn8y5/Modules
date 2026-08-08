@@ -21,6 +21,16 @@ if not shared.Maid then
 else
     Maid = shared.Maid
 end
+
+local InputManager
+if not shared.InputManager then
+    InputManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/cy5n03t2ct4y3jc0tn8y5/Modules/refs/heads/main/Set1/InputManager.luau"))()
+    shared.InputManager = InputManager
+
+    Success += 1
+else
+    InputManager = shared.InputManager
+end
   
 
 DebugService:Info(tostring(Success) .. " MODULES LOADED")
