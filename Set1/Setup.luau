@@ -1,3 +1,5 @@
+shared.Loaded = false
+
 local Success = 0
 
 local DebugService
@@ -12,3 +14,5 @@ else
 end
 
 DebugService:Info(tostring(Success) .. " MODULES LOADED")
+
+shared.Loaded = true
