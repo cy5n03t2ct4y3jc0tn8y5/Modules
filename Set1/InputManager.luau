@@ -52,6 +52,16 @@ function InputManager:Exit()
     InputManager.Maid:Destroy()
     table.clear(InputManager.Inputs)
     InputManager.Maid = Maid.new()
+
+    InputManager.Maid:GiveTask(UserInputService.InputBegan:Connect(function(input, gameProcessed)
+        if gameProcessed then return end
+        
+        for _, binding in ipairs(InputManager.Inputs) do
+            if binding.Active and input.KeyCode == binding.Keycode then
+                binding.Callback()
+            end
+        end
+    end))
 end
 
 InputManager.Maid:GiveTask(UserInputService.InputBegan:Connect(function(input, gameProcessed)
