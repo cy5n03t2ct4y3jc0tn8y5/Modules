@@ -50,6 +50,7 @@ end
 function InputManager:Exit()
     InputManager.Maid:Destroy()
     table.clear(InputManager.Inputs)
+    InputManager.Maid = Maid.new()
 end
 
 InputManager.Maid:GiveTask(UserInputService.InputBegan:Connect(function(input, gameProcessed)
