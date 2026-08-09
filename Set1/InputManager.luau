@@ -1,12 +1,13 @@
 local UserInputService = game:GetService("UserInputService")
 local Players = game:GetService("Players")
 local Client = Players.LocalPlayer
+local Maid = shared.Maid
 
 local InputManager = {}
 InputManager.__index = InputManager
 
 InputManager.Inputs = {}
-InputManager.Maid = shared.Maid.new()
+InputManager.Maid = Maid.new()
 
 function InputManager.new(Keycode, callback)
     local self = setmetatable({}, InputManager)
