@@ -22,6 +22,16 @@ else
     Maid = shared.Maid
 end
 
+local Scheuler
+if not shared.Scheduler then
+    Scheduler = loadstring(game:HttpGet("https://raw.githubusercontent.com/cy5n03t2ct4y3jc0tn8y5/Modules/refs/heads/main/Scheduler.luau"))()
+    shared.Scheduler = Scheduler
+
+    Success += 1
+else
+    Scheduler = shared.Scheduler    
+end
+
 local InputManager
 if not shared.InputManager then
     InputManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/cy5n03t2ct4y3jc0tn8y5/Modules/refs/heads/main/Set1/InputManager.luau"))()
