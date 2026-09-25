@@ -5,6 +5,7 @@ local TweenService = game:GetService("TweenService")
 local Client = Players.LocalPlayer
 local Maid = shared.Maid
 local InputManager = shared.InputManager
+local DebugService = shared.DebugService
 
 local Gui = {}
 
@@ -154,7 +155,13 @@ function Gui.new(title)
     local ScreenGui = CreateGui(title)
     local UI = {}
 
-    function UI.Button(Key, desc, Callback)
+    InputManager.new(Enum.KeyCode.LeftBracket, function()
+        if UserInputService:IsKeyDown(Enum.KeyCode.LeftShift) then
+            ScreenGui.Enabled = not ScreenGui.Enabled
+        end
+    end)
+
+    function UI.Button(Key, Callback)
         local Main = ScreenGui:FindFirstChild("Main")
 
         local Template = Create("Frame", Main, {
@@ -197,7 +204,7 @@ function Gui.new(title)
             TextSize = 14,
             Size = UDim2.new(0.95, 0, 1, 0),
             TextColor3 = Color3.fromRGB(255, 255, 255),
-            Text = " - " .. desc,
+            Text = "",
             Font = Enum.Font.RobotoMono,
             Name = "Desc",
             Position = UDim2.new(0.05, 0, 0.5, 0),
