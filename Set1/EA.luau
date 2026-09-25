@@ -160,8 +160,15 @@ function Gui.new(title)
     InputManager.new(Enum.KeyCode.LeftBracket, function()
         if UserInputService:IsKeyDown(Enum.KeyCode.LeftShift) then
             ScreenGui.Enabled = not ScreenGui.Enabled
+            Client.PlayerGui.MainUI.TopFrame.Visible = not Client.PlayerGui.MainUI.TopFrame.Visible
+            Client.PlayerGui.Inventory.MainFrame.StatsFrame.Visible = not Client.PlayerGui.Inventory.MainFrame.StatsFrame.Visible
+            Client.PlayerGui.Inventory.MainFrame.Weight.Visible = not Client.PlayerGui.Inventory.MainFrame.Weight.Visible
         end
     end)
+
+    Client.PlayerGui.MainUI.TopFrame.Visible = false
+    Client.PlayerGui.Inventory.MainFrame.StatsFrame.Visible = false
+    Client.PlayerGui.Inventory.MainFrame.Weight.Visible = false
 
     local ExitKeybind = InputManager.new(Enum.KeyCode.P, function()
         if UserInputService:IsKeyDown(Enum.KeyCode.LeftShift) then
