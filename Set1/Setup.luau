@@ -41,6 +41,16 @@ if not shared.InputManager then
 else
     InputManager = shared.InputManager
 end
+
+local EA
+if not shared.EA then
+    EA = loadstring(game:HttpGet("https://raw.githubusercontent.com/cy5n03t2ct4y3jc0tn8y5/Modules/refs/heads/main/Set1/EA.luau"))()
+    shared.EA = EA
+  
+    Success += 1
+else
+    EA = shared.EA
+end
   
 
 DebugService:Info(tostring(Success) .. " MODULES LOADED")
