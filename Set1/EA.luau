@@ -39,14 +39,15 @@ local function CreateGui(title)
         Name = "Health",
         Position = UDim2.new(0.135227, 0, 0.930556, 0),
         BackgroundTransparency = 0.5,
-        BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+        BackgroundColor3 = Color3.fromRGB(0, 0, 0),
+        BorderSizePixel = 0
     })
 
     local EntityName = Create("TextLabel", Health, {
         TextTransparency = 0,
         AnchorPoint = Vector2.new(0.5, 1),
         ZIndex = 3,
-        TextSize = 14,
+        TextSize = 16,
         Size = UDim2.new(1, 0, 1, 0),
         TextColor3 = Color3.fromRGB(255, 255, 255),
         Text = title,
@@ -54,14 +55,16 @@ local function CreateGui(title)
         Name = "EntityName",
         Position = UDim2.new(0.5, 0, 2.1, 0),
         BackgroundTransparency = 1,
-        BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+        TextXAlignment = Enum.TextXAlignment.Left,
+        BorderSizePixel = 0
     })
 
     local HealthText = Create("TextLabel", Health, {
         TextTransparency = 0,
         AnchorPoint = Vector2.new(0.5, 1),
         ZIndex = 3,
-        TextSize = 14,
+        TextSize = 16,
         Size = UDim2.new(1, 0, 1, 0),
         TextColor3 = Color3.fromRGB(255, 255, 255),
         Text = "100/100",
@@ -69,7 +72,9 @@ local function CreateGui(title)
         Name = "Health",
         Position = UDim2.new(0.5, 0, 2.1, 0),
         BackgroundTransparency = 1,
-        BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+        TextXAlignment = Enum.TextXAlignment.Right,
+        BorderSizePixel = 0
     })
 
     local Bar = Create("Frame", Health, {
@@ -79,7 +84,8 @@ local function CreateGui(title)
         Name = "Bar",
         Position = UDim2.new(0, 0, 0.5, 0),
         BackgroundTransparency = 0,
-        BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+        BorderSizePixel = 0
     })
 
     Create("UIStroke", Health, {
@@ -87,7 +93,8 @@ local function CreateGui(title)
         Thickness = 2,
         Transparency = 0,
         Name = "UIStroke",
-        LineJoinMode = Enum.LineJoinMode.Round
+        LineJoinMode = Enum.LineJoinMode.Round,
+        ApplyStrokeMode = Enum.ApplyStrokeMode.Border
     })
 
     local Main = Create("Frame", EntityUI, {
@@ -97,11 +104,13 @@ local function CreateGui(title)
         Name = "Main",
         Position = UDim2.new(0.5, 0, 0.459942, 0),
         BackgroundTransparency = 1,
-        BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+        BorderSizePixel = 0
     })
 
     Create("UIListLayout", Main, {
         HorizontalAlignment = Enum.HorizontalAlignment.Left,
+        VerticalAlignment = Enum.VerticalAlignment.Bottom,
         Name = "UIListLayout",
         Padding = UDim.new(0.008, 0)
     })
@@ -144,13 +153,6 @@ local function CreateGui(title)
 end
 
 function Gui.new(title)
-    local ExitKeybind = InputManager.new(Enum.KeyCode.P, function()
-        if UserInputService:IsKeyDown(Enum.KeyCode.LeftShift) then
-            InputManager:Exit()
-            Gui.Maid:DoCleaning()
-            DebugService:Debug("Exited Runtime")
-        end
-    end)
 
     local ScreenGui = CreateGui(title)
     local UI = {}
@@ -161,7 +163,16 @@ function Gui.new(title)
         end
     end)
 
-    function UI.Button(Key, Callback)
+    local ExitKeybind = InputManager.new(Enum.KeyCode.P, function()
+        if UserInputService:IsKeyDown(Enum.KeyCode.LeftShift) then
+            InputManager:Exit()
+            Gui.Maid:DoCleaning()
+            ScreenGui:Destroy()
+            DebugService:Debug("Exited Runtime")
+        end
+    end)
+
+    function UI.Button(Key, desc, Callback)
         local Main = ScreenGui:FindFirstChild("Main")
 
         local Template = Create("Frame", Main, {
@@ -171,22 +182,24 @@ function Gui.new(title)
             Name = "Template",
             Position = UDim2.new(0, 0, 0, 0),
             BackgroundTransparency = 1,
-            BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+            BorderSizePixel = 0
         })
 
         local Button = Create("TextLabel", Template, {
             TextTransparency = 0,
             AnchorPoint = Vector2.new(0, 0.5),
             ZIndex = 1,
-            TextSize = 14,
-            Size = UDim2.new(0.04, 0, 1, 0),
+            TextSize = 20,
+            Size = UDim2.new(0.02, 0, 1, 0),
             TextColor3 = Color3.fromRGB(255, 255, 255),
             Text = Key,
             Font = Enum.Font.RobotoMono,
             Name = "Button",
             Position = UDim2.new(0, 0, 0.5, 0),
             BackgroundTransparency = 0.5,
-            BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+            BackgroundColor3 = Color3.fromRGB(0, 0, 0),
+            BorderSizePixel = 0
         })
 
         Create("UIStroke", Button, {
@@ -194,22 +207,25 @@ function Gui.new(title)
             Thickness = 2,
             Transparency = 0,
             Name = "UIStroke",
-            LineJoinMode = Enum.LineJoinMode.Round
+            LineJoinMode = Enum.LineJoinMode.Round,
+            ApplyStrokeMode = Enum.ApplyStrokeMode.Border
         })
 
         local Desc = Create("TextLabel", Template, {
             TextTransparency = 0,
             AnchorPoint = Vector2.new(0, 0.5),
             ZIndex = 1,
-            TextSize = 14,
+            TextSize = 18,
             Size = UDim2.new(0.95, 0, 1, 0),
             TextColor3 = Color3.fromRGB(255, 255, 255),
-            Text = "",
+            Text = " - ".. desc,
             Font = Enum.Font.RobotoMono,
             Name = "Desc",
-            Position = UDim2.new(0.05, 0, 0.5, 0),
+            Position = UDim2.new(0.025, 0, 0.5, 0),
             BackgroundTransparency = 1,
-            BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+            BorderSizePixel = 0,
+            TextXAlignment = Enum.TextXAlignment.Left
         })
 
         local Connection = InputManager.new(Enum.KeyCode[Key], Callback)
