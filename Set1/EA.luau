@@ -205,7 +205,7 @@ function Gui.new(title)
             Size = UDim2.new(0.02, 0, 1, 0),
             TextColor3 = Color3.fromRGB(255, 255, 255),
             Text = Key,
-            Font = Enum.Font.RobotoMono,
+            Font = Font.new("rbxasset://fonts/families/RobotoMono.json", Enum.FontWeight.Bold, Enum.FontStyle.Normal),
             Name = "Button",
             Position = UDim2.new(0, 0, 0.5, 0),
             BackgroundTransparency = 0.5,
