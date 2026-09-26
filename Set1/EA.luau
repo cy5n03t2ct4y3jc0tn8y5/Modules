@@ -176,6 +176,10 @@ function Gui.new(title)
             Gui.Maid:DoCleaning()
             ScreenGui:Destroy()
             DebugService:Debug("Exited Runtime")
+
+        Client.PlayerGui.MainUI.TopFrame.Visible = Client.PlayerGui.Inventory.Enabled
+        Client.PlayerGui.Inventory.MainFrame.StatsFrame.Visible = Client.PlayerGui.Inventory.Enabled
+        Client.PlayerGui.Inventory.MainFrame.Weight.Visible = Client.PlayerGui.Inventory.Enabled
         end
     end)
 
