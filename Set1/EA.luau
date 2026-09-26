@@ -29,7 +29,8 @@ local function CreateGui(title)
 
     local EntityUI = Create("ScreenGui", Client.PlayerGui, {
         Name = "EntityUI",
-        ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+        ZIndexBehavior = Enum.ZIndexBehavior.Sibling,
+        ResetOnSpawn = false
     })
 
     local Health = Create("Frame", EntityUI, {
@@ -156,6 +157,7 @@ function Gui.new(title)
 
     local ScreenGui = CreateGui(title)
     local UI = {}
+    UI.UI = ScreenGui
 
     InputManager.new(Enum.KeyCode.LeftBracket, function()
         if UserInputService:IsKeyDown(Enum.KeyCode.LeftShift) then
