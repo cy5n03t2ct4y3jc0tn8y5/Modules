@@ -196,7 +196,7 @@ function Gui.new(title)
     end)
 
     function UI.AddGui(Gui)
-        table.insert(UI.AddedGuis #UI.AddedGuis + 1, Gui)
+        table.insert(UI.AddedGuis, #UI.AddedGuis + 1, Gui)
     end
 
     function UI.Button(Key, desc, Callback)
