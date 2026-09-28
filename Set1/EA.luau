@@ -158,6 +158,7 @@ function Gui.new(title)
     local ScreenGui = CreateGui(title)
     local UI = {}
     UI.UI = ScreenGui
+    UI.AddedGuis = {}
 
     InputManager.new(Enum.KeyCode.LeftBracket, function()
         if UserInputService:IsKeyDown(Enum.KeyCode.LeftShift) then
@@ -165,6 +166,10 @@ function Gui.new(title)
             Client.PlayerGui.MainUI.TopFrame.Visible = not Client.PlayerGui.MainUI.TopFrame.Visible
             Client.PlayerGui.Inventory.MainFrame.StatsFrame.Visible = not Client.PlayerGui.Inventory.MainFrame.StatsFrame.Visible
             Client.PlayerGui.Inventory.MainFrame.Weight.Visible = not Client.PlayerGui.Inventory.MainFrame.Weight.Visible
+
+            for _, gui in next, UI.AddedGuis do
+                gui.Enabled = not gui.Enabled
+            end
         end
     end)
 
@@ -177,13 +182,22 @@ function Gui.new(title)
             InputManager:Exit()
             Gui.Maid:DoCleaning()
             ScreenGui:Destroy()
+
+            for _, gui in next, UI.AddedGuis do
+                gui:Destroy()
+            end
+
             DebugService:Debug("Exited Runtime")
 
-        Client.PlayerGui.MainUI.TopFrame.Visible = Client.PlayerGui.Inventory.Enabled
-        Client.PlayerGui.Inventory.MainFrame.StatsFrame.Visible = Client.PlayerGui.Inventory.Enabled
-        Client.PlayerGui.Inventory.MainFrame.Weight.Visible = Client.PlayerGui.Inventory.Enabled
+            Client.PlayerGui.MainUI.TopFrame.Visible = Client.PlayerGui.Inventory.Enabled
+            Client.PlayerGui.Inventory.MainFrame.StatsFrame.Visible = Client.PlayerGui.Inventory.Enabled
+            Client.PlayerGui.Inventory.MainFrame.Weight.Visible = Client.PlayerGui.Inventory.Enabled
         end
     end)
+
+    function UI.AddGui(Gui)
+        table.insert(UI.AddedGuis #UI.AddedGuis + 1, Gui)
+    end
 
     function UI.Button(Key, desc, Callback)
         local Main = ScreenGui:FindFirstChild("Main")
