@@ -253,12 +253,14 @@ if PlaceId == DUNGEON_ID then
 
         while task.wait(0.4) do
             if not victoryButton or not victoryButton.Parent then
-                victoryButton = WaitForPath(Client.PlayerGui, "Victory.FlexHolder.ItemContainer.PlayButton", 3)
+                victoryButton = WaitForPath(Client.PlayerGui, "Victory", 3)
             end
 
-            if victoryButton and victoryButton.Visible then
+            if victoryButton and victoryButton.Enabled then
                 pcall(function()
-                    TeleportService:Teleport(LOBBY_ID)
+                    local button = WaitForPath(Client.PlayerGui, "Victory.FlexHolder.ItemContainer.PlayButton", 3)
+                    firesignal(button.MouseButton1Down)
+                    firesignal(button.MouseButton1Up)
                 end)
                 break
             end
