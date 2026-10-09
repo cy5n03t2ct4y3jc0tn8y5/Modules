@@ -170,7 +170,8 @@ if game.PlaceId == 73462038693506 then
 
     game:GetService("Players").LocalPlayer.PlayerGui.Victory.FlexHolder.ItemContainer.PlayButton:GetPropertyChangedSignal("Visible"):Connect(function()
         if game:GetService("Players").LocalPlayer.PlayerGui.Victory.FlexHolder.ItemContainer.PlayButton.Visible then
-            firesignal(game:GetService("Players").LocalPlayer.PlayerGui.Victory.FlexHolder.ItemContainer.PlayButton.MouseButton1Click)
+            firesignal(game:GetService("Players").LocalPlayer.PlayerGui.Victory.FlexHolder.ItemContainer.PlayButton.MouseButton1Down)
+            firesignal(game:GetService("Players").LocalPlayer.PlayerGui.Victory.FlexHolder.ItemContainer.PlayButton.MouseButton1Up)
         end
     end)
 end
