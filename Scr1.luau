@@ -1,5 +1,7 @@
 task.wait(2)
 
+clearteleportqueue()
+
 if game.PlaceId == 87061591699718 then
 
     local Client = game.Players.LocalPlayer
