@@ -10,32 +10,46 @@ if game.PlaceId == 87061591699718 then
     local Event = game:GetService("ReplicatedStorage").Package.Remotes.createparty
     Event:FireServer()
 
+    task.wait(0.1)
+
+
     local Event = game:GetService("ReplicatedStorage").Package.Remotes.setdungeon
     Event:FireServer(
         "The Amphitheatre"
     )
+
+    task.wait(0.1)
+
 
     local Event = game:GetService("ReplicatedStorage").Package.Remotes.setmodifier
     Event:FireServer(
         "Nightmare"
     )
 
+    task.wait(0.1)
+
+
     local Event = game:GetService("ReplicatedStorage").Package.Remotes.setmodifier
     Event:FireServer(
         "Eclipsed"
     )
+
+    task.wait(0.1)
+
 
     local Event = game:GetService("ReplicatedStorage").Package.Remotes.setmodifier
     Event:FireServer(
         "FriendlyFire"
     )
 
+    task.wait(0.1)
+
     local Event = game:GetService("ReplicatedStorage").Package.Remotes.setmodifier
     Event:FireServer(
         "Hardcore"
     )
 
-    task.wait()
+    task.wait(0.2)
 
     local Event = game:GetService("ReplicatedStorage").Package.Remotes.tptodungeon
     Event:FireServer()
@@ -170,12 +184,11 @@ if game.PlaceId == 73462038693506 then
 
     DebugService:Debug("Started Runtime")
 
-    game:GetService("Players").LocalPlayer.PlayerGui.Victory.FlexHolder.ItemContainer.PlayButton:GetPropertyChangedSignal("Visible"):Connect(function()
-        if game:GetService("Players").LocalPlayer.PlayerGui.Victory.FlexHolder.ItemContainer.PlayButton.Visible then
-            firesignal(game:GetService("Players").LocalPlayer.PlayerGui.Victory.FlexHolder.ItemContainer.PlayButton.MouseButton1Down)
-            firesignal(game:GetService("Players").LocalPlayer.PlayerGui.Victory.FlexHolder.ItemContainer.PlayButton.MouseButton1Up)
+    while task.wait(0.5) do
+        if game:GetService("Players").LocalPlayer.PlayerGui.Victory.FlexHolder.ItemContainer.PlayButton.Visible == true then
+            game:GetService("TeleportService"):Teleport(87061591699718)
         end
-    end)
+    end
 end
 
 queueonteleport([[
