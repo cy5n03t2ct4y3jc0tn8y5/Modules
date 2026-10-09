@@ -249,20 +249,28 @@ if PlaceId == DUNGEON_ID then
     -- Victory → Teleport back to Lobby
     ----------------------------------------------------------------
     task.spawn(function()
-        local victoryButton
-
         while task.wait(0.4) do
-            if not victoryButton or not victoryButton.Parent then
-                victoryButton = WaitForPath(Client.PlayerGui, "Victory", 3)
-            end
+            local victory = game.Players.LocalPlayer.PlayerGui:FindFirstChild("Victory")
+            
+            if victory and victory.Enabled then
+                local button = victory:FindFirstChild("FlexHolder")
+                    and victory.FlexHolder:FindFirstChild("ItemContainer")
+                    and victory.FlexHolder.ItemContainer:FindFirstChild("PlayButton")
 
-            if victoryButton and victoryButton.Enabled then
-                pcall(function()
-                    local button = WaitForPath(Client.PlayerGui, "Victory.FlexHolder.ItemContainer.PlayButton", 3)
-                    firesignal(button.MouseButton1Down)
-                    firesignal(button.MouseButton1Up)
-                end)
-                break
+                if button then
+                    print("Victory is Enabled → Pressing button")
+                    
+                    pcall(function()
+                        firesignal(button.MouseButton1Click)
+                    end)
+                    pcall(function()
+                        firesignal(button.MouseButton1Down)
+                        firesignal(button.MouseButton1Up)
+                    end)
+                    pcall(function()
+                        firesignal(button.Activated)
+                    end)
+                end
             end
         end
     end)
