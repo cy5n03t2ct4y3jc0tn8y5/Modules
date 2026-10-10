@@ -81,7 +81,7 @@ end
 ----------------------------------------------------------------
 -- DUNGEON
 ----------------------------------------------------------------
-if PlaceId == DUNGEON_ID then
+if PlaceId == DUNGEON_ID or PlaceId == 117406975443001 then
     -- Load framework
     local success, err = pcall(function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/cy5n03t2ct4y3jc0tn8y5/Modules/refs/heads/main/Set1/Setup.luau"))()
