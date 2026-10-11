@@ -1,5 +1,5 @@
-task.wait(4)
-clearteleportqueue()
+task.wait(2)
+--kclearteleportqueue()
 
 queueonteleport([[
     loadstring(game:HttpGet("https://raw.githubusercontent.com/cy5n03t2ct4y3jc0tn8y5/Modules/refs/heads/main/Scr1.luau"))()
