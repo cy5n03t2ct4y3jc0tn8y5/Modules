@@ -65,7 +65,7 @@ if PlaceId == LOBBY_ID then
     FireRemote("createparty")
     task.wait(0.15)
 
-    FireRemote("setdungeon", "Mountain Cliff")
+    FireRemote("setdungeon", "The Shore")
     task.wait(0.15)
 
     local modifiers = {"Nightmare", "Eclipsed", "FriendlyFire", "Hardcore"}
