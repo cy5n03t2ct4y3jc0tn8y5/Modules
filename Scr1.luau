@@ -1,4 +1,4 @@
-task.wait(6)
+task.wait(4)
 clearteleportqueue()
 
 queueonteleport([[
@@ -65,7 +65,7 @@ if PlaceId == LOBBY_ID then
     FireRemote("createparty")
     task.wait(0.15)
 
-    FireRemote("setdungeon", "The Amphitheatre")
+    FireRemote("setdungeon", "Mountain Cliff")
     task.wait(0.15)
 
     local modifiers = {"Nightmare", "Eclipsed", "FriendlyFire", "Hardcore"}
@@ -253,9 +253,32 @@ if PlaceId ~= LOBBY_ID then
             local victory = game.Players.LocalPlayer.PlayerGui:FindFirstChild("Victory")
             
             if victory and victory.Enabled then
-                local button = victory:FindFirstChild("FlexHolder")
-                    and victory.FlexHolder:FindFirstChild("ItemContainer")
-                    and victory.FlexHolder.ItemContainer:FindFirstChild("PlayButton")
+                local button = victory:FindFirstChild("FlexHolder"):FindFirstChild("ItemContainer"):FindFirstChild("PlayButton")
+
+                if button then
+                    print("Victory is Enabled → Pressing button")
+                    
+                    pcall(function()
+                        firesignal(button.MouseButton1Click)
+                    end)
+                    pcall(function()
+                        firesignal(button.MouseButton1Down)
+                        firesignal(button.MouseButton1Up)
+                    end)
+                    pcall(function()
+                        firesignal(button.Activated)
+                    end)
+                end
+            end
+        end
+    end)
+
+    task.spawn(function()
+        while task.wait(0.4) do
+            local victory = game.Players.LocalPlayer.PlayerGui:FindFirstChild("PartComplete")
+            
+            if victory and victory.Enabled then
+                local button = victory:FindFirstChild("FlexHolder"):FindFirstChild("ItemContainer"):FindFirstChild("CONTINUE")
 
                 if button then
                     print("Victory is Enabled → Pressing button")
