@@ -141,7 +141,7 @@ if PlaceId ~= LOBBY_ID then
 
         -- Add new enemies
         for _, enemy in ipairs(enemiesFolder:GetChildren()) do
-            if enemy:IsA("Model") and not table.find(Targets, enemy) then
+            if enemy:IsA("Model") and not table.find(Targets, enemy) and not enemy:GetAttribute("Good") and not enemy:GetAttribute("Summon") then
                 table.insert(Targets, enemy)
             end
         end
@@ -181,7 +181,12 @@ if PlaceId ~= LOBBY_ID then
             CurrentTarget = Targets[1]
         end
 
-        if not CurrentTarget then return end
+        if not CurrentTarget then
+            char.HumanoidRootPart.Anchored = true
+            return
+        else
+            char.HumanoidRootPart.Anchored = false
+        end
 
         local humanoid = CurrentTarget:FindFirstChildOfClass("Humanoid")
         local targetRoot = CurrentTarget:FindFirstChild("HumanoidRootPart")
