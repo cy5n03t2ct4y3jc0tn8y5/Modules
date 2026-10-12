@@ -198,7 +198,7 @@ if PlaceId ~= LOBBY_ID then
 
         -- Position under the enemy
         local targetPivot = CurrentTarget:GetPivot()
-        local position = (targetPivot * CFrame.new(0, -9, 0)).Position
+        local position = (targetPivot * CFrame.new(0, 9, 0)).Position
 
         pcall(function()
             char:PivotTo(CFrame.lookAt(position, targetRoot.Position))
