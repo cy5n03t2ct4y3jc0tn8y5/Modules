@@ -65,7 +65,7 @@ if PlaceId == LOBBY_ID then
     FireRemote("createparty")
     task.wait(0.15)
 
-    FireRemote("setdungeon", "The Shore")
+    FireRemote("setdungeon", "The Amphitheatre")
     task.wait(0.15)
 
     local modifiers = {"Nightmare", "Eclipsed", "FriendlyFire", "Hardcore"}
@@ -198,7 +198,7 @@ if PlaceId ~= LOBBY_ID then
 
         -- Position under the enemy
         local targetPivot = CurrentTarget:GetPivot()
-        local position = (targetPivot * CFrame.new(0, 9, 0)).Position
+        local position = (targetPivot * CFrame.new(0, -9, 0)).Position
 
         pcall(function()
             char:PivotTo(CFrame.lookAt(position, targetRoot.Position))
